@@ -1,78 +1,35 @@
-/* fireworks animation */
+const text = "You make my life brighter every day. Happy Birthday my love Aysha ❤️";
+let i = 0;
 
-const canvas = document.createElement("canvas");
-document.body.appendChild(canvas);
-
-canvas.style.position="fixed";
-canvas.style.top="0";
-canvas.style.left="0";
-canvas.style.width="100%";
-canvas.style.height="100%";
-canvas.style.pointerEvents="none";
-
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-function random(min,max){
-return Math.random()*(max-min)+min;
+function typing(){
+if(i < text.length){
+document.getElementById("message").innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,70);
+}
 }
 
-function createFirework(){
+function nextPage(){
+typing();
+}
 
-const x = random(0,canvas.width);
-const y = random(0,canvas.height/2);
+/* floating hearts */
 
-for(let i=0;i<30;i++){
+function createHeart(){
 
-const angle = Math.random()2Math.PI;
-const speed = random(1,4);
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "❤️";
 
-const vx = Math.cos(angle)*speed;
-const vy = Math.sin(angle)*speed;
+heart.style.left = Math.random()*100 + "vw";
+heart.style.animationDuration = (4 + Math.random()*3) + "s";
 
-particles.push({
-x:x,
-y:y,
-vx:vx,
-vy:vy,
-life:60
-});
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
 
 }
 
-}
-
-const particles=[];
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-for(let i=particles.length-1;i>=0;i--){
-
-const p=particles[i];
-
-p.x+=p.vx;
-p.y+=p.vy;
-p.life--;
-
-ctx.beginPath();
-ctx.arc(p.x,p.y,2,0,Math.PI*2);
-ctx.fillStyle="pink";
-ctx.fill();
-
-if(p.life<=0){
-particles.splice(i,1);
-}
-
-}
-
-requestAnimationFrame(animate);
-
-}
-
-animate();
-
-setInterval(createFirework,2000);
+setInterval(createHeart,400);
