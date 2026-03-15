@@ -10,6 +10,7 @@ setTimeout(typing,70);
 }
 
 function nextPage(){
+document.getElementById("messagePage").style.display = "block";
 typing();
 }
 
