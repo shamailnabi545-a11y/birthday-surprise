@@ -2,7 +2,7 @@ const text = "You make my life brighter every day. Happy Birthday my love Aysha 
 let i = 0;
 const photos = [
 "photo1.jpg",
-"photo2.jpg",
+"WhatsApp Image 2026-03-13 at 22.15.14.jpeg",
 "photo3.jpg"
 ];
 
