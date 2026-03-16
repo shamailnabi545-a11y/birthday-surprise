@@ -1,5 +1,33 @@
 const text = "You make my life brighter every day. Happy Birthday my love Aysha ❤️";
 let i = 0;
+const photos = [
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg"
+];
+
+const texts = [
+"You are the most beautiful part of my life ❤️",
+"Every moment with you feels magical ✨",
+"Happy Birthday my love Aysha ❤️"
+];
+
+let index = 0;
+
+function slideShow(){
+
+document.getElementById("slideImage").src = photos[index];
+document.getElementById("slideText").innerText = texts[index];
+
+index++;
+
+if(index >= photos.length){
+index = 0;
+}
+
+}
+
+setInterval(slideShow,3000);
 
 function typing(){
 if(i < text.length){
