@@ -1,62 +1,88 @@
-const text = "You make my life brighter every day. Happy Birthday my love Aysha ❤️";
-let i = 0;
 const photos = [
+
 "photo1.jpg",
-"WhatsApp Image 2026-03-13 at 22.15.14.jpeg",
-"photo3.jpg"
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg"
+
 ];
 
 const texts = [
-"You are the most beautiful part of my life ❤️",
-"Every moment with you feels magical ✨",
+
+"The day you came into my life everything became beautiful ❤️",
+
+"Your smile is my favorite thing in the world ✨",
+
+"Every moment with you feels magical 💖",
+
 "Happy Birthday my love Aysha ❤️"
+
 ];
 
 let index = 0;
 
+function startSurprise(){
+
+document.getElementById("startScreen").style.display="none";
+
+document.getElementById("mainPage").style.display="block";
+
+document.getElementById("music").play();
+
+slideShow();
+
+}
+
 function slideShow(){
 
-document.getElementById("slideImage").src = photos[index];
-document.getElementById("slideText").innerText = texts[index];
+document.getElementById("slideImage").src=photos[index];
+
+document.getElementById("slideText").innerText=texts[index];
 
 index++;
 
-if(index >= photos.length){
-index = 0;
-}
+if(index<photos.length){
+
+setTimeout(slideShow,3000);
 
 }
 
-setInterval(slideShow,3000);
+else{
 
-function typing(){
-if(i < text.length){
-document.getElementById("message").innerHTML += text.charAt(i);
-i++;
-setTimeout(typing,70);
-}
+setTimeout(showFinalPage,3000);
+
 }
 
-function nextPage(){
-document.getElementById("messagePage").style.display = "block";
-typing();
+}
+
+function showFinalPage(){
+
+document.getElementById("mainPage").style.display="none";
+
+document.getElementById("finalPage").style.display="block";
+
 }
 
 /* floating hearts */
 
 function createHeart(){
 
-const heart = document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML = "❤️";
+const heart=document.createElement("div");
 
-heart.style.left = Math.random()*100 + "vw";
-heart.style.animationDuration = (4 + Math.random()*3) + "s";
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(4+Math.random()*3)+"s";
 
 document.body.appendChild(heart);
 
 setTimeout(()=>{
+
 heart.remove();
+
 },6000);
 
 }
