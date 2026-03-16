@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Happy Birthday</title>
+
+<title>Birthday Surprise</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<h1 class="title">Happy Birthday my love Aysha❤️</h1>
-  <div class="slideshow">
+<div id="startScreen">
+
+<h1>Tap to Start Surprise ❤️</h1>
+
+<button onclick="startSurprise()">Start</button>
+
+</div>
+
+<div id="mainPage">
+
+<h1 class="title">Happy Birthday My Love Aysha ❤️</h1>
+
+<div class="slideshow">
 
 <img id="slideImage" src="photo1.jpg">
 
@@ -16,35 +31,28 @@
 
 </div>
 
-<div class="gallery">
-<img src="WhatsApp Image 2026-03-13 at 22.38.47.jpeg">
-<img src="WhatsApp Image 2026-03-13 at 22.15.14.jpeg">
-<img src="WhatsApp Image 2026-03-13 at 22.15.15.jpeg">
-</div>
-  <div style="text-align:center; margin-top:40px;">
-    <button onclick="nextPage()" 
-    style="padding:12px 25px; font-size:18px; border:none; 
-    background:#ff4da6; color:white; border-radius:20px; cursor:pointer;">
-        Next ❤️
-    </button>
 </div>
 
-<div id="messagePage" style="display:none; text-align:center; margin-top:40px;">
-    <h2 style="color:white;">Happy Birthday My Love ❤️</h2>
-    <p style="color:white; font-size:20px;">
-        You are the most special person in my life.  
-        I wish your life is always full of happiness and love.  
-        Stay smiling always. ❤️
-    </p>
+<div id="finalPage">
+
+<h1>Happy Birthday My Love ❤️</h1>
+
+<p>You are the most special person in my life.</p>
+
+<p>I wish your life is always full of happiness.</p>
+
+<p>I love you forever ❤️</p>
+
 </div>
 
-<p id="message"></p>
+<audio id="music" loop>
 
-<audio autoplay loop>
 <source src="music.mp3" type="audio/mp3">
+
 </audio>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
