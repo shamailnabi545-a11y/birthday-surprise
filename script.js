@@ -9,7 +9,7 @@ const photos = [
 
 const texts = [
 
-"The day you came into my life everything became beautiful ❤️",
+"phir tum mile,jindagi mili,phir ehsaas hua pyaar kya h,sukkon kya h,chain kya h❤️",
 
 "Your smile is my favorite thing in the world ✨",
 
