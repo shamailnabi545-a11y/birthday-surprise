@@ -1,6 +1,6 @@
 const photos = [
 
-"photo1.jpg",
+"WhatsApp Image 2026-03-16 at 22.14.32.jpeg",
 "photo2.jpg",
 "photo3.jpg",
 "photo4.jpg"
