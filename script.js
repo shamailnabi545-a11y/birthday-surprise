@@ -3,19 +3,14 @@ const photos=[
 "WhatsApp Image 2026-03-17 at 12.20.05.jpeg",
 "WhatsApp Image 2026-03-17 at 11.46.36.jpeg",
 "WhatsApp Image 2026-03-16 at 22.18.46.jpeg",
-"WhatsApp Image 2026-03-16 at 22.18.31.jpeg",
+"WhatsApp Image 2026-03-16 at 22.18.31.jpeg
 ];
 
 const texts=[
 
-`Phir tum mile, zindagi mili  
-Phir ehsaas hua pyaar kya hai  
-Sukoon kya hai, chain kya hai ❤️`,
+"Phir tum mile, zindagi mili\nPhir ehsaas hua pyaar kya hai\nSukoon kya hai, chain kya hai ❤️",
 
-`Uski aankhon se pyaar kar baitha hu
-Sab kuch apna us par haar baitha hu
-Uski ek nazar se sawar jaati hai duniya meri
-Main apni muskan ka karan usey bana baitha hu ❤️`,
+"Uski aankhon se pyaar kar baitha hu\nSab kuch apna us par haar baitha hu\nUski ek nazar se sawar jaati hai duniya meri\nMain apni muskan ka karan usey bana baitha hu ❤️",
 
 "Your smile is my favorite thing in the world ❤️",
 
@@ -29,28 +24,35 @@ let index=0;
 
 /* START */
 function startSurprise(){
-
 document.getElementById("startScreen").style.display="none";
 document.getElementById("mainPage").style.display="block";
 
-document.getElementById("music").play();
+/* autoplay fix (mobile) */
+const music=document.getElementById("music");
+music.muted=true;
+music.play().then(()=>{
+music.muted=false;
+}).catch(()=>{});
 
 slideShow();
 }
 
-/* TYPE */
+/* TYPEWRITER */
 function typeText(text){
 
-let i=0;
 const el=document.getElementById("slideText");
-el.innerHTML="";
 el.style.opacity=1;
+
+text=text.replace(/\n/g,"<br>");
+
+let i=0;
+el.innerHTML="";
 
 function typing(){
 if(i<text.length){
 el.innerHTML+=text.charAt(i);
 i++;
-setTimeout(typing,35);
+setTimeout(typing,22);
 }
 }
 
@@ -60,23 +62,36 @@ typing();
 /* SLIDESHOW */
 function slideShow(){
 
-document.getElementById("slideImage").src=photos[index];
+const img=document.getElementById("slideImage");
+img.classList.add("fade");
+
+setTimeout(()=>{
+
+img.src=photos[index];
+img.classList.remove("fade");
 
 const el=document.getElementById("slideText");
 el.style.opacity=0;
 
-setTimeout(()=>{typeText(texts[index]);},500);
+setTimeout(()=>{
+typeText(texts[index]);
+},400);
+
+/* dynamic timing */
+let t=texts[index].length*22 + 3500;
 
 index++;
 
 if(index<photos.length){
-setTimeout(slideShow,4000);
+setTimeout(slideShow,t);
 }else{
-setTimeout(showGift,4000);
-}
+setTimeout(showGift,t);
 }
 
-/* GIFT */
+},800);
+}
+
+/* FLOW */
 function showGift(){
 document.getElementById("mainPage").style.display="none";
 document.getElementById("giftPage").style.display="block";
@@ -85,47 +100,69 @@ document.getElementById("giftPage").style.display="block";
 function openGift(){
 document.getElementById("giftPage").style.display="none";
 document.getElementById("cakePage").style.display="block";
-
-setTimeout(showFinal,3000);
+setTimeout(showFinal,2500);
 }
 
-/* FINAL */
 function showFinal(){
-
 document.getElementById("cakePage").style.display="none";
-document.getElementById("finalPage").style.display="block";
-
+document.getElementById("finalPage").style.display="flex";
 setInterval(createFirework,300);
 }
 
 /* HEARTS */
 function createHeart(){
-
-const heart=document.createElement("div");
-heart.classList.add("heart");
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-heart.style.animationDuration=(4+Math.random()*3)+"s";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),6000);
+const h=document.createElement("div");
+h.classList.add("heart");
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(4+Math.random()*2)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),5000);
 }
+setInterval(createHeart,500);
 
-setInterval(createHeart,400);
-
-/* FIREWORKS */
+/* FIREWORK */
 function createFirework(){
-
 const f=document.createElement("div");
 f.classList.add("firework");
 f.innerHTML="✨";
-
 f.style.left=Math.random()*100+"vw";
 f.style.top=Math.random()*100+"vh";
-
 document.body.appendChild(f);
-
 setTimeout(()=>f.remove(),1000);
 }
+
+/* STARS */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+resize();
+window.onresize=resize;
+
+let stars=[];
+for(let i=0;i<120;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*1.5
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+
+requestAnimationFrame(draw);
+}
+
+draw();
