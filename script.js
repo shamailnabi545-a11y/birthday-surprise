@@ -24,24 +24,28 @@ let index=0;
 
 /* START */
 function startSurprise(){
+
 document.getElementById("startScreen").style.display="none";
 document.getElementById("mainPage").style.display="flex";
+
+index = 0;
 
 /* music fix */
 const music=document.getElementById("music");
 music.muted=true;
-music.play().then(()=>{music.muted=false;});
+music.play().then(()=>{music.muted=false;}).catch(()=>{});
 
 slideShow();
 }
 
-/* TEXT */
+/* TEXT SHOW */
 function showText(text){
+
 const el=document.getElementById("slideText");
 
 el.innerHTML=text;
 
-/* auto fit */
+/* auto-fit */
 let size=22;
 el.style.fontSize=size+"px";
 
@@ -51,32 +55,38 @@ el.style.fontSize=size+"px";
 }
 }
 
-/* SLIDESHOW */
+/* SLIDESHOW (FIXED) */
 function slideShow(){
 
 const img=document.getElementById("slideImage");
+
+/* FIRST SHOW CURRENT */
+img.src = photos[index];
+img.classList.remove("fade");
+
+showText(texts[index]);
+
+/* WAIT TIME */
+let time = texts[index].length * 30 + 3500;
+
+/* NEXT SLIDE */
+setTimeout(()=>{
+
 img.classList.add("fade");
 
 setTimeout(()=>{
 
-img.src=photos[index];
-img.classList.remove("fade");
-
-setTimeout(()=>{
-showText(texts[index]);
-},300);
-
-let t=texts[index].length*25 + 4000;
-
 index++;
 
-if(index<photos.length){
-setTimeout(slideShow,t);
+if(index < photos.length){
+slideShow();
 }else{
-setTimeout(showGift,t);
+showGift();
 }
 
-},700);
+},800);
+
+},time);
 }
 
 /* FLOW */
@@ -96,7 +106,7 @@ document.getElementById("cakePage").style.display="none";
 document.getElementById("finalPage").style.display="flex";
 }
 
-/* hearts */
+/* HEARTS */
 function createHeart(){
 const h=document.createElement("div");
 h.classList.add("heart");
@@ -108,12 +118,16 @@ setTimeout(()=>h.remove(),5000);
 }
 setInterval(createHeart,500);
 
-/* stars */
+/* STARS BACKGROUND */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
+function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
+}
+resize();
+window.onresize=resize;
 
 let stars=[];
 for(let i=0;i<120;i++){
@@ -136,4 +150,5 @@ ctx.fill();
 
 requestAnimationFrame(draw);
 }
+
 draw();
