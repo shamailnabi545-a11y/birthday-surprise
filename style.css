@@ -1,89 +1,106 @@
 body{
-
 background:black;
 color:white;
-font-family:Arial;
 text-align:center;
 overflow:hidden;
-
+font-family:Arial;
 }
 
-#mainPage{
+/* hide pages */
+#mainPage,#giftPage,#cakePage,#finalPage{display:none;}
 
-display:none;
-
-}
-
-#finalPage{
-
-display:none;
-margin-top:100px;
-font-size:28px;
-
-}
-
-#startScreen{
-
-margin-top:200px;
-
-}
+#startScreen{margin-top:200px;}
 
 button{
-
 padding:12px 25px;
-font-size:18px;
 background:#ff4da6;
-color:white;
 border:none;
+color:white;
 border-radius:20px;
-cursor:pointer;
-
 }
 
 .title{
-
 color:#ff4da6;
 text-shadow:0 0 25px #ff4da6;
-
 }
 
-.slideshow{
-
-margin-top:40px;
-
-}
-
+/* slideshow */
 .slideshow img{
-
 width:350px;
 border-radius:20px;
-box-shadow:0 0 25px #ff4da6;
-transition:1s;
+animation:zoom 6s infinite;
+}
 
+@keyframes zoom{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
 }
 
 #slideText{
-
-margin-top:25px;
-font-size:24px;
-
+white-space:pre-line;
+opacity:0;
+transition:1s;
+font-size:22px;
+color:#ff4da6;
 }
 
-.heart{
+/* gift */
+.giftBox{
+font-size:80px;
+cursor:pointer;
+margin-top:200px;
+animation:bounce 1s infinite;
+}
 
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* cake */
+#cakePage{
+margin-top:200px;
+font-size:40px;
+}
+
+/* final */
+.finalText{
+font-size:40px;
+color:#ff4da6;
+animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff4da6;}
+to{text-shadow:0 0 30px #ff4da6;}
+}
+
+.finalSub{
+white-space:pre-line;
+}
+
+/* hearts */
+.heart{
 position:fixed;
 top:-10px;
-font-size:20px;
 animation:fall linear forwards;
-
 }
 
 @keyframes fall{
-
-to{
-
-transform:translateY(100vh);
-
+to{transform:translateY(100vh);}
 }
 
+/* fireworks */
+.firework{
+position:fixed;
+font-size:20px;
+animation:explode 1s forwards;
+}
+
+@keyframes explode{
+to{
+transform:scale(3);
+opacity:0;
+}
 }
