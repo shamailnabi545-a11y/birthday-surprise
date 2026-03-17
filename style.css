@@ -6,12 +6,8 @@ font-family:Arial;
 overflow:hidden;
 }
 
-/* ALL PAGES FIX */
-#startScreen,
-#mainPage,
-#giftPage,
-#cakePage,
-#finalPage{
+/* ALL PAGES */
+#startScreen,#mainPage,#giftPage,#cakePage,#finalPage{
 position:fixed;
 top:0;
 left:0;
@@ -24,17 +20,42 @@ flex-direction:column;
 text-align:center;
 }
 
-/* start visible */
+/* START SCREEN */
 #startScreen{
 display:flex;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
 }
 
-.title{
+.startTitle{
+font-size:32px;
 color:#ff4da6;
 text-shadow:0 0 20px #ff4da6;
+margin-bottom:10px;
 }
 
-/* slideshow */
+.startSub{
+color:#ccc;
+margin-bottom:25px;
+}
+
+.startBtn{
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4da6,#ff66cc);
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff4da6;
+}
+
+/* MAIN */
+.title{
+color:#ff4da6;
+text-shadow:0 0 15px #ff4da6;
+}
+
 .slideshow{
 display:flex;
 flex-direction:column;
@@ -48,13 +69,12 @@ padding:20px;
 max-width:90%;
 max-height:50vh;
 border-radius:20px;
-transition:1s;
+transition: transform 4s linear, opacity 1s;
 object-fit:contain;
 }
 
 .fade{
 opacity:0;
-filter:blur(8px);
 }
 
 #slideText{
@@ -63,12 +83,11 @@ max-width:90%;
 color:#ff4da6;
 line-height:1.6;
 text-align:center;
-padding:10px;
 font-size:20px;
-min-height:60px;
+transition:0.5s;
 }
 
-/* gift */
+/* GIFT */
 .giftBox{
 font-size:70px;
 cursor:pointer;
@@ -80,23 +99,40 @@ animation:bounce 1s infinite;
 50%{transform:translateY(-15px);}
 }
 
-/* final */
-#finalPage{
-background:black;
-z-index:10;
-}
-
+/* FINAL */
 .finalTitle{
-font-size:35px;
+font-size:30px;
 text-shadow:0 0 20px #ff4da6;
 }
 
 .finalMsg{
 font-size:18px;
-line-height:1.8;
+line-height:1.7;
 }
 
-/* hearts */
+/* HEART EXPLOSION */
+#heartContainer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+z-index:999;
+}
+
+.explodeHeart{
+position:absolute;
+font-size:24px;
+animation:explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+0%{transform:translate(0,0) scale(1);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) scale(1.6);opacity:0;}
+}
+
+/* FLOAT HEARTS */
 .heart{
 position:fixed;
 top:-10px;
@@ -107,7 +143,7 @@ animation:fall linear forwards;
 to{transform:translateY(100vh);}
 }
 
-/* stars */
+/* STARS */
 #stars{
 position:fixed;
 top:0;
