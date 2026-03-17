@@ -2,57 +2,60 @@
 <html>
 
 <head>
-
 <title>Birthday Surprise</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
+<!-- START -->
 <div id="startScreen">
-
-<h1>Tap to Start Surprise ❤️</h1>
-
+<h1>Tap to Start ❤️</h1>
 <button onclick="startSurprise()">Start</button>
-
 </div>
 
+<!-- MAIN -->
 <div id="mainPage">
 
 <h1 class="title">Happy Birthday My Love Aysha ❤️</h1>
 
 <div class="slideshow">
-
 <img id="slideImage" src="photo1.jpg">
-
 <h2 id="slideText"></h2>
-
 </div>
 
 </div>
 
+<!-- GIFT -->
+<div id="giftPage">
+<div class="giftBox" onclick="openGift()">🎁</div>
+<p>Tap the gift 🎁</p>
+</div>
+
+<!-- CAKE -->
+<div id="cakePage">
+<h1>🎂</h1>
+<p>Make a wish ❤️</p>
+</div>
+
+<!-- FINAL -->
 <div id="finalPage">
 
-<h1>Happy Birthday My Love ❤️</h1>
+<h1 class="finalText">Happy Birthday My Love ❤️</h1>
 
-<p>You are the most special person in my life.</p>
-
-<p>I wish your life is always full of happiness.</p>
-
-<p>I love you forever ❤️</p>
+<p class="finalSub">
+You are the most special person in my life.  
+I wish your life is always full of happiness.  
+I love you forever ❤️
+</p>
 
 </div>
 
 <audio id="music" loop>
-
 <source src="music.mp3" type="audio/mp3">
-
 </audio>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
