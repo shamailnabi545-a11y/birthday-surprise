@@ -17,57 +17,79 @@ const texts=[
 "Every moment with you feels magical ✨",
 
 "Happy Birthday my love Aysha ❤️"
-
 ];
 
 let index=0;
 
-/* START */
 function startSurprise(){
 
 document.getElementById("startScreen").style.display="none";
 document.getElementById("mainPage").style.display="flex";
 
-index = 0;
+heartExplosion();
 
-/* MUSIC */
 const music=document.getElementById("music");
 music.muted=true;
-music.play().then(()=>{music.muted=false;}).catch(()=>{});
+music.play().then(()=>{music.muted=false;});
 
-/* 👉 FIRST SLIDE IMMEDIATELY SHOW */
+index=0;
+
+setTimeout(()=>{
 showSlide();
-
-/* 👉 THEN LOOP */
-setTimeout(nextSlide, getDelay());
+setTimeout(nextSlide,getDelay());
+},800);
 }
 
-/* SHOW CURRENT SLIDE */
-function showSlide(){
+/* HEART EXPLOSION */
+function heartExplosion(){
+const container=document.getElementById("heartContainer");
 
+for(let i=0;i<30;i++){
+const h=document.createElement("div");
+h.classList.add("explodeHeart");
+h.innerHTML="❤️";
+
+let x=(Math.random()-0.5)*400+"px";
+let y=(Math.random()-0.5)*400+"px";
+
+h.style.setProperty("--x",x);
+h.style.setProperty("--y",y);
+
+h.style.left="50%";
+h.style.top="50%";
+
+container.appendChild(h);
+
+setTimeout(()=>h.remove(),1000);
+}
+}
+
+/* SLIDES */
+function showSlide(){
 const img=document.getElementById("slideImage");
-img.src = photos[index];
-img.classList.remove("fade");
+
+img.style.transform="scale(1)";
+img.src=photos[index];
+
+setTimeout(()=>{
+img.style.transform="scale(1.08)";
+},100);
 
 showText(texts[index]);
 }
 
-/* NEXT SLIDE */
 function nextSlide(){
-
 const img=document.getElementById("slideImage");
 
 img.classList.add("fade");
 
 setTimeout(()=>{
-
 index++;
 
-if(index < photos.length){
-
+if(index<photos.length){
+img.classList.remove("fade");
 showSlide();
-setTimeout(nextSlide, getDelay());
-
+setTimeout(nextSlide,getDelay());
 }else{
 showGift();
 }
@@ -75,25 +97,20 @@ showGift();
 },800);
 }
 
-/* DYNAMIC DELAY */
 function getDelay(){
-return texts[index].length * 30 + 3500;
+return texts[index].length*40+5000;
 }
 
 /* TEXT */
 function showText(text){
-
 const el=document.getElementById("slideText");
+
+el.style.opacity=0;
+
+setTimeout(()=>{
 el.innerHTML=text;
-
-/* auto fit */
-let size=22;
-el.style.fontSize=size+"px";
-
-while(el.scrollHeight > window.innerHeight*0.35 && size>14){
-size--;
-el.style.fontSize=size+"px";
-}
+el.style.opacity=1;
+},200);
 }
 
 /* FLOW */
@@ -113,8 +130,8 @@ document.getElementById("cakePage").style.display="none";
 document.getElementById("finalPage").style.display="flex";
 }
 
-/* HEARTS */
-function createHeart(){
+/* FLOAT HEARTS */
+setInterval(()=>{
 const h=document.createElement("div");
 h.classList.add("heart");
 h.innerHTML="❤️";
@@ -122,19 +139,14 @@ h.style.left=Math.random()*100+"vw";
 h.style.animationDuration=(4+Math.random()*2)+"s";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),5000);
-}
-setInterval(createHeart,500);
+},500);
 
 /* STARS */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
-function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-}
-resize();
-window.onresize=resize;
 
 let stars=[];
 for(let i=0;i<120;i++){
