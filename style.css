@@ -4,47 +4,52 @@ background:black;
 color:white;
 font-family:Arial;
 overflow:hidden;
-text-align:center;
 }
 
-/* canvas */
-#stars{
+/* ALL PAGES FIX */
+#startScreen,
+#mainPage,
+#giftPage,
+#cakePage,
+#finalPage{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-1;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
 }
 
-/* hide pages */
-#mainPage,#giftPage,#cakePage{display:none;}
-#finalPage{display:none;}
-
+/* start visible */
 #startScreen{
-margin-top:200px;
+display:flex;
 }
 
-button{
-padding:12px 25px;
-background:#ff4da6;
-border:none;
-color:white;
-border-radius:20px;
-}
-
-/* title */
 .title{
 color:#ff4da6;
-text-shadow:0 0 25px #ff4da6;
+text-shadow:0 0 20px #ff4da6;
 }
 
 /* slideshow */
+.slideshow{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+height:100%;
+padding:20px;
+}
+
 .slideshow img{
-width:90%;
-max-width:350px;
+max-width:90%;
+max-height:50vh;
 border-radius:20px;
-transition:all 1s ease;
+transition:1s;
+object-fit:contain;
 }
 
 .fade{
@@ -53,20 +58,20 @@ filter:blur(8px);
 }
 
 #slideText{
-opacity:0;
-transition:1s;
-font-size:20px;
-color:#ff4da6;
+margin-top:15px;
 max-width:90%;
-margin:auto;
+color:#ff4da6;
 line-height:1.6;
+text-align:center;
+padding:10px;
+font-size:20px;
+min-height:60px;
 }
 
 /* gift */
 .giftBox{
 font-size:70px;
 cursor:pointer;
-margin-top:150px;
 animation:bounce 1s infinite;
 }
 
@@ -75,35 +80,20 @@ animation:bounce 1s infinite;
 50%{transform:translateY(-15px);}
 }
 
-/* cake */
-#cakePage{
-margin-top:150px;
-font-size:35px;
-}
-
-/* FINAL */
+/* final */
 #finalPage{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
+background:black;
+z-index:10;
 }
 
 .finalTitle{
-font-size:36px;
-font-weight:bold;
-text-shadow:0 0 25px #ff4da6;
-margin-bottom:20px;
+font-size:35px;
+text-shadow:0 0 20px #ff4da6;
 }
 
 .finalMsg{
-font-size:20px;
-font-weight:bold;
+font-size:18px;
 line-height:1.8;
-max-width:500px;
 }
 
 /* hearts */
@@ -117,13 +107,12 @@ animation:fall linear forwards;
 to{transform:translateY(100vh);}
 }
 
-/* fireworks */
-.firework{
+/* stars */
+#stars{
 position:fixed;
-font-size:18px;
-animation:explode 1s forwards;
-}
-
-@keyframes explode{
-to{transform:scale(3); opacity:0;}
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
