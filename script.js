@@ -30,47 +30,32 @@ document.getElementById("mainPage").style.display="flex";
 
 index = 0;
 
-/* music fix */
+/* MUSIC */
 const music=document.getElementById("music");
 music.muted=true;
 music.play().then(()=>{music.muted=false;}).catch(()=>{});
 
-slideShow();
+/* 👉 FIRST SLIDE IMMEDIATELY SHOW */
+showSlide();
+
+/* 👉 THEN LOOP */
+setTimeout(nextSlide, getDelay());
 }
 
-/* TEXT SHOW */
-function showText(text){
-
-const el=document.getElementById("slideText");
-
-el.innerHTML=text;
-
-/* auto-fit */
-let size=22;
-el.style.fontSize=size+"px";
-
-while(el.scrollHeight > window.innerHeight*0.35 && size>14){
-size--;
-el.style.fontSize=size+"px";
-}
-}
-
-/* SLIDESHOW (FIXED) */
-function slideShow(){
+/* SHOW CURRENT SLIDE */
+function showSlide(){
 
 const img=document.getElementById("slideImage");
-
-/* FIRST SHOW CURRENT */
 img.src = photos[index];
 img.classList.remove("fade");
 
 showText(texts[index]);
-
-/* WAIT TIME */
-let time = texts[index].length * 30 + 3500;
+}
 
 /* NEXT SLIDE */
-setTimeout(()=>{
+function nextSlide(){
+
+const img=document.getElementById("slideImage");
 
 img.classList.add("fade");
 
@@ -79,14 +64,36 @@ setTimeout(()=>{
 index++;
 
 if(index < photos.length){
-slideShow();
+
+showSlide();
+setTimeout(nextSlide, getDelay());
+
 }else{
 showGift();
 }
 
 },800);
+}
 
-},time);
+/* DYNAMIC DELAY */
+function getDelay(){
+return texts[index].length * 30 + 3500;
+}
+
+/* TEXT */
+function showText(text){
+
+const el=document.getElementById("slideText");
+el.innerHTML=text;
+
+/* auto fit */
+let size=22;
+el.style.fontSize=size+"px";
+
+while(el.scrollHeight > window.innerHeight*0.35 && size>14){
+size--;
+el.style.fontSize=size+"px";
+}
 }
 
 /* FLOW */
@@ -118,7 +125,7 @@ setTimeout(()=>h.remove(),5000);
 }
 setInterval(createHeart,500);
 
-/* STARS BACKGROUND */
+/* STARS */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
@@ -150,5 +157,4 @@ ctx.fill();
 
 requestAnimationFrame(draw);
 }
-
 draw();
