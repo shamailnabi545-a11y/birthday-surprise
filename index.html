@@ -2,11 +2,14 @@
 <html>
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Surprise</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<canvas id="stars"></canvas>
 
 <!-- START -->
 <div id="startScreen">
@@ -16,14 +19,12 @@
 
 <!-- MAIN -->
 <div id="mainPage">
-
 <h1 class="title">Happy Birthday My Love Aysha ❤️</h1>
 
 <div class="slideshow">
 <img id="slideImage" src="photo1.jpg">
 <h2 id="slideText"></h2>
 </div>
-
 </div>
 
 <!-- GIFT -->
@@ -40,18 +41,16 @@
 
 <!-- FINAL -->
 <div id="finalPage">
+<h1 class="finalTitle">Happy Birthday My Love ❤️</h1>
 
-<h1 class="finalText">Happy Birthday My Love ❤️</h1>
-
-<p class="finalSub">
-You are the most special person in my life.  
-I wish your life is always full of happiness.  
+<p class="finalMsg">
+You are the most special person in my life.<br><br>
+I wish your life is always full of happiness.<br><br>
 I love you forever ❤️
 </p>
-
 </div>
 
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
 <source src="music.mp3" type="audio/mp3">
 </audio>
 
