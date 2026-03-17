@@ -3,14 +3,14 @@ const photos=[
 "WhatsApp Image 2026-03-17 at 12.20.05.jpeg",
 "WhatsApp Image 2026-03-17 at 11.46.36.jpeg",
 "WhatsApp Image 2026-03-16 at 22.18.46.jpeg",
-"WhatsApp Image 2026-03-16 at 22.18.31.jpeg
+"WhatsApp Image 2026-03-16 at 22.18.31.jpeg"
 ];
 
 const texts=[
 
-"Phir tum mile, zindagi mili\nPhir ehsaas hua pyaar kya hai\nSukoon kya hai, chain kya hai ❤️",
+"Phir tum mile, zindagi mili<br>Phir ehsaas hua pyaar kya hai<br>Sukoon kya hai, chain kya hai ❤️",
 
-"Uski aankhon se pyaar kar baitha hu\nSab kuch apna us par haar baitha hu\nUski ek nazar se sawar jaati hai duniya meri\nMain apni muskan ka karan usey bana baitha hu ❤️",
+"Uski aankhon se pyaar kar baitha hu<br>Sab kuch apna us par haar baitha hu<br>Uski ek nazar se sawar jaati hai duniya meri<br>Main apni muskan ka karan usey bana baitha hu ❤️",
 
 "Your smile is my favorite thing in the world ❤️",
 
@@ -25,38 +25,30 @@ let index=0;
 /* START */
 function startSurprise(){
 document.getElementById("startScreen").style.display="none";
-document.getElementById("mainPage").style.display="block";
+document.getElementById("mainPage").style.display="flex";
 
-/* autoplay fix (mobile) */
+/* music fix */
 const music=document.getElementById("music");
 music.muted=true;
-music.play().then(()=>{
-music.muted=false;
-}).catch(()=>{});
+music.play().then(()=>{music.muted=false;});
 
 slideShow();
 }
 
-/* TYPEWRITER */
-function typeText(text){
-
+/* TEXT */
+function showText(text){
 const el=document.getElementById("slideText");
-el.style.opacity=1;
 
-text=text.replace(/\n/g,"<br>");
+el.innerHTML=text;
 
-let i=0;
-el.innerHTML="";
+/* auto fit */
+let size=22;
+el.style.fontSize=size+"px";
 
-function typing(){
-if(i<text.length){
-el.innerHTML+=text.charAt(i);
-i++;
-setTimeout(typing,22);
+while(el.scrollHeight > window.innerHeight*0.35 && size>14){
+size--;
+el.style.fontSize=size+"px";
 }
-}
-
-typing();
 }
 
 /* SLIDESHOW */
@@ -70,15 +62,11 @@ setTimeout(()=>{
 img.src=photos[index];
 img.classList.remove("fade");
 
-const el=document.getElementById("slideText");
-el.style.opacity=0;
-
 setTimeout(()=>{
-typeText(texts[index]);
-},400);
+showText(texts[index]);
+},300);
 
-/* dynamic timing */
-let t=texts[index].length*22 + 3500;
+let t=texts[index].length*25 + 4000;
 
 index++;
 
@@ -88,28 +76,27 @@ setTimeout(slideShow,t);
 setTimeout(showGift,t);
 }
 
-},800);
+},700);
 }
 
 /* FLOW */
 function showGift(){
 document.getElementById("mainPage").style.display="none";
-document.getElementById("giftPage").style.display="block";
+document.getElementById("giftPage").style.display="flex";
 }
 
 function openGift(){
 document.getElementById("giftPage").style.display="none";
-document.getElementById("cakePage").style.display="block";
+document.getElementById("cakePage").style.display="flex";
 setTimeout(showFinal,2500);
 }
 
 function showFinal(){
 document.getElementById("cakePage").style.display="none";
 document.getElementById("finalPage").style.display="flex";
-setInterval(createFirework,300);
 }
 
-/* HEARTS */
+/* hearts */
 function createHeart(){
 const h=document.createElement("div");
 h.classList.add("heart");
@@ -121,27 +108,12 @@ setTimeout(()=>h.remove(),5000);
 }
 setInterval(createHeart,500);
 
-/* FIREWORK */
-function createFirework(){
-const f=document.createElement("div");
-f.classList.add("firework");
-f.innerHTML="✨";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*100+"vh";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1000);
-}
-
-/* STARS */
+/* stars */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 
-function resize(){
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-}
-resize();
-window.onresize=resize;
 
 let stars=[];
 for(let i=0;i<120;i++){
@@ -164,5 +136,4 @@ ctx.fill();
 
 requestAnimationFrame(draw);
 }
-
 draw();
