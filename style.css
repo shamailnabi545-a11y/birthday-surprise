@@ -152,3 +152,73 @@ width:100%;
 height:100%;
 z-index:-1;
 }
+
+/* ===== MAGIC + FIREWORK PAGES ===== */
+
+#magicPage,#fireworkPage{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* MAGIC PAGE */
+#magicPage{
+background:radial-gradient(circle,#1a001a,#000);
+}
+
+.magicTitle{
+font-size:32px;
+color:#ff4da6;
+text-shadow:0 0 20px #ff4da6;
+margin-bottom:20px;
+}
+
+.cake{
+font-size:80px;
+margin-bottom:20px;
+animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 10px pink);}
+to{filter:drop-shadow(0 0 30px hotpink);}
+}
+
+.magicBtn{
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff4da6,#ff66cc);
+color:white;
+cursor:pointer;
+}
+
+/* FIREWORK PAGE */
+#fireworkPage{
+background:black;
+overflow:hidden;
+}
+
+.fireText{
+position:absolute;
+top:40%;
+font-size:35px;
+font-family:'Great Vibes',cursive;
+color:white;
+text-shadow:0 0 20px white;
+z-index:2;
+}
+
+#fireworksCanvas{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
