@@ -175,16 +175,13 @@ requestAnimationFrame(draw);
 }
 draw();
 
-draw();   // ← तुम्हारा existing code
-
-/* ============================= */
-/* 🔥 FIREWORKS CODE START HERE */
-/* ============================= */
-
 function startFireworks(){
 
 const canvas=document.getElementById("fireworksCanvas");
 const ctx=canvas.getContext("2d");
+
+/* delay fix */
+setTimeout(()=>{
 
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
@@ -197,7 +194,7 @@ constructor(){
 this.x=Math.random()*canvas.width;
 this.y=canvas.height;
 this.targetY=Math.random()*canvas.height/2;
-this.speed=5;
+this.speed=6;
 this.color=`hsl(${Math.random()*360},100%,50%)`;
 }
 
@@ -219,7 +216,7 @@ ctx.fill();
 }
 
 explode(){
-for(let i=0;i<50;i++){
+for(let i=0;i<60;i++){
 particles.push(new Particle(this.x,this.y,this.color));
 }
 }
@@ -229,9 +226,9 @@ class Particle{
 constructor(x,y,color){
 this.x=x;
 this.y=y;
-this.speed=Math.random()*5;
+this.speed=Math.random()*6;
 this.angle=Math.random()*Math.PI*2;
-this.gravity=0.05;
+this.gravity=0.06;
 this.alpha=1;
 this.color=color;
 }
@@ -239,9 +236,9 @@ this.color=color;
 update(){
 this.x+=Math.cos(this.angle)*this.speed;
 this.y+=Math.sin(this.angle)*this.speed;
-this.speed*=0.98;
+this.speed*=0.97;
 this.y+=this.gravity;
-this.alpha-=0.01;
+this.alpha-=0.015;
 }
 
 draw(){
@@ -260,10 +257,12 @@ requestAnimationFrame(animate);
 ctx.fillStyle="rgba(0,0,0,0.2)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-if(Math.random()<0.05){
+/* rockets */
+if(Math.random()<0.08){
 fireworks.push(new Firework());
 }
 
+/* update */
 fireworks=fireworks.filter(f=>{
 f.draw();
 return !f.update();
@@ -277,8 +276,6 @@ return p.alpha>0;
 }
 
 animate();
-}
 
-/* ============================= */
-/* 🔥 FIREWORKS CODE END */
-/* ============================= */
+},300); // 🔥 important
+}
