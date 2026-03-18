@@ -121,13 +121,13 @@ document.getElementById("giftPage").style.display="flex";
 
 function openGift(){
 document.getElementById("giftPage").style.display="none";
-document.getElementById("cakePage").style.display="flex";
-setTimeout(showFinal,2500);
+document.getElementById("magicPage").style.display="flex";
 }
 
-function showFinal(){
-document.getElementById("cakePage").style.display="none";
-document.getElementById("finalPage").style.display="flex";
+function startMagic(){
+document.getElementById("magicPage").style.display="none";
+document.getElementById("fireworkPage").style.display="flex";
+startFireworks();
 }
 
 /* FLOAT HEARTS */
