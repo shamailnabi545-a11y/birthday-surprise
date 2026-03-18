@@ -129,9 +129,15 @@ document.getElementById("magicPage").style.display="flex";
 }
 
 function startMagic(){
-document.getElementById("magicPage").style.display="none";
-document.getElementById("fireworkPage").style.display="flex";
-startFireworks();
+  document.getElementById("magicPage").style.display="none";
+  document.getElementById("fireworkPage").style.display="flex";
+
+  startFireworks();
+
+  // ⏳ 6 sec बाद next page
+  setTimeout(()=>{
+    showFinalPage();
+  },6000);
 }
 
 /* FLOAT HEARTS */
@@ -278,4 +284,19 @@ return p.alpha>0;
 animate();
 
 },300); // 🔥 important
+}
+
+function showFinalPage(){
+  document.getElementById("fireworkPage").style.display="none";
+  document.getElementById("finalPage").style.display="flex";
+
+  // ⏳ 5 sec बाद special message page
+  setTimeout(()=>{
+    showFinalMessagePage();
+  },5000);
+}
+
+function showFinalMessagePage(){
+  document.getElementById("finalPage").style.display="none";
+  document.getElementById("finalMessagePage").style.display="flex";
 }
