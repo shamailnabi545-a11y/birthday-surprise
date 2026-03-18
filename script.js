@@ -121,6 +121,10 @@ document.getElementById("giftPage").style.display="flex";
 
 function openGift(){
 document.getElementById("giftPage").style.display="none";
+
+// ❗ IMPORTANT: बाकी pages भी hide करो
+document.getElementById("mainPage").style.display="none";
+
 document.getElementById("magicPage").style.display="flex";
 }
 
