@@ -134,9 +134,10 @@ function startMagic(){
 
   startFireworks();
 
-  // ⏳ 6 sec बाद next page
+  // 🔥 6 sec baad direct special message
   setTimeout(()=>{
-    showFinalPage();
+    document.getElementById("fireworkPage").style.display="none";
+    document.getElementById("finalMessagePage").style.display="flex";
   },6000);
 }
 
@@ -286,17 +287,3 @@ animate();
 },300); // 🔥 important
 }
 
-function showFinalPage(){
-  document.getElementById("fireworkPage").style.display="none";
-  document.getElementById("finalPage").style.display="flex";
-
-  // ⏳ 5 sec बाद special message page
-  setTimeout(()=>{
-    showFinalMessagePage();
-  },5000);
-}
-
-function showFinalMessagePage(){
-  document.getElementById("finalPage").style.display="none";
-  document.getElementById("finalMessagePage").style.display="flex";
-}
